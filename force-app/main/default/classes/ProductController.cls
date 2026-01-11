@@ -1,4 +1,4 @@
-public with sharing class ProductController {
+public with sharing class productController {
     /**
      * @Description : Fetches product pricing details based on product type and country.
      * @User Story  : Case Study - Senior Salesforce Engineer Task 1.
