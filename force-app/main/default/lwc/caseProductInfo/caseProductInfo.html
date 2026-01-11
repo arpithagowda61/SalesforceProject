@@ -1,0 +1,79 @@
+<template>
+    <lightning-card title="Product Information" icon-name="standard:product">
+        <div class="slds-m-around_medium">
+            <template lwc:if={productDetails}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div title="Feature">Feature</div>
+                            </th>
+                            <th scope="col">
+                                <div title="Details">Details</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td><strong>Product</strong></td>
+                            <td>
+                               {pName}
+                            </td>
+                        </tr>
+                          <tr>
+                            <td><strong>Country</strong></td>
+                            <td>
+                                {cName}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost per Calendar Month</strong></td>
+                            <td>
+                                <lightning-formatted-number 
+                                    value={productDetails.Cost_per_Calendar_Month__c} 
+                                    format-style="currency" 
+                                    currency-code="EUR"
+                                    currency-display-as="symbol" 
+                                    maximum-fraction-digits="0">
+                                </lightning-formatted-number>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>ATM Fee (Other Currencies)</strong></td>
+                            <td>
+                                <template if:true={isFeeFree}>
+                                    <span class="slds-text-color_success">FREE</span>
+                                </template>
+                                <template if:false={isFeeFree}>
+                                    <lightning-formatted-number 
+                                        value={atmFeeDisplay} 
+                                        format-style="percent" 
+                                        maximum-fraction-digits="2">
+                                    </lightning-formatted-number>
+                                </template>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Card Replacement Cost</strong></td>
+                            <td>
+                                <lightning-formatted-number 
+                                    value={productDetails.Card_Replacement_Cost__c} 
+                                    format-style="currency" 
+                                    currency-code="EUR"
+                                    currency-display-as="symbol"
+                                    maximum-fraction-digits="0">
+                                </lightning-formatted-number>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </template>
+
+            <template lwc:else>
+                <div class="slds-notify slds-notify_alert slds-theme_error slds-m-top_small" role="alert">
+                    <h2>No pricing plan found.</h2>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
