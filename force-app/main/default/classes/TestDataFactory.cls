@@ -3,7 +3,7 @@
  * Scales well as new requirements (contract length, etc.) are added.
  */
 @isTest
-public class TestDataFactory {
+public class testDataFactory {
     
     // Method to create the Product Plan record
     public static Product_Plan__c createProductPlan(String prodType, String country) {
